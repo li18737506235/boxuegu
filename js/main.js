@@ -24,6 +24,9 @@ define([], function () {
       teacherList: 'js/teacher/teacher_list',
       userProfile: 'js/user/user_profile',
       userList: 'js/user/user_list',
+      common: 'js/common/common',
+      aside: 'js/common/aside',
+      header: 'js/common/header',
 
       // 配置第三方js模块别名
       template: 'lib/artTemplate/template-debug',
@@ -45,6 +48,11 @@ define([], function () {
         deps: ['jquery']
       }
     }
+  });
+  
+  // 所有的页面，只要main.js加载完毕了，那么就优先加载进度条插件，显式进度条
+  require(['nprogress'], function(nprogress) {
+  	nprogress.start();
   });
   
   // 这里根据页面的路径进行不同页面的区分进而加载不同的js
