@@ -33,6 +33,7 @@ define([], function () {
       template: 'lib/artTemplate/template-debug',
       bootstrap: 'lib/bootstrap/js/bootstrap',
       datepicker: 'lib/bootstrap-datepicker/js/bootstrap-datepicker',
+      datepickerCN: 'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
       ckeditor: 'lib/ckeditor/ckeditor',
       ckeditorLand: 'lib/ckeditor/lang/zh-cn',
       echarts: 'lib/echarts/echarts.min',
@@ -44,9 +45,15 @@ define([], function () {
     },
 
     shim: {
+    	
       //bootstrap是非define依赖于jquery
       bootstrap: {
         deps: ['jquery']
+      },
+      
+      // 日期插件的语言包是非define定义的模块
+      datepickerCN: {
+      	deps: ['jquery', 'datepicker']
       }
     }
   });
