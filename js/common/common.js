@@ -43,4 +43,21 @@ define(['jquery', 'jqueryCookie'], function($, undefined) {
 		
 	})();
 	
+	// 对外暴露一个对象
+	return {
+		
+		// 把页面中的查询字符串转换为对象的形式
+		parseSearch: function(searchName) {
+			var searchArr = location.search.slice(1).split('&');
+			var searchObj = {}, tempArr;
+			
+			for(var i = 0, len = searchArr.length; i < len; i++) {
+				tempArr = searchArr[i].split('=');
+				searchObj[tempArr[0]] = tempArr[1];
+			}
+			
+			// 如果没有传参，那么返回对象，传了，返回指定的参数值
+			return (searchName == null)? searchObj: searchObj[searchName];
+		}
+	};
 });
