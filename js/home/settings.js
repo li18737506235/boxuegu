@@ -16,24 +16,29 @@ define(['jquery', 'common', 'header', 'aside', 'nprogress', 'loading', 'template
 				endDate: new Date(),
 				format: 'yyyy-mm-dd'
 			});
-			
+
 			// 初始化富文本编辑器
 			edit = ckeditor.replace('ckeditor', {
 				toolbarGroups: [
 					{ name: 'styles' }
 				]
 			});
-			
+
 			// 初始化省市三级联动插件
 			$('#region').region({
 				url: '/lib/jquery-region/region.json'
 			});
-			
+
 			// 初始化文件上传插件
 			$('#upfile').uploadify({
 				swf: '/lib/uploadify/uploadify.swf',
 				uploader: '/v6/uploader/avatar',
-				fileObjName: 'tc_avatar'
+				fileObjName: 'tc_avatar',
+				buttonText: '',
+				height: $('.preview').height(),
+				onUploadSuccess: function(file, data, response) {
+					data && $('.preview img').attr('src', JSON.parse(data).result.path);
+				}
 			});
 		}
 	});
@@ -52,6 +57,8 @@ define(['jquery', 'common', 'header', 'aside', 'nprogress', 'loading', 'template
 				data: {
 					tc_hometown: $('#p').find('option:selected').text() + '|' + $('#c').find('option:selected').text() + '|' + $('#d').find('option:selected').text()
 				},
+				
+				// 修改成功后，刷新当前页
 				success: function(data) {
 					if(data.code == 200) {
 						location.reload();

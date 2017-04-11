@@ -1,0 +1,13 @@
+<!-- 摘要 -->
+<div class="brief">
+    <div class="thumb">
+        <img src={{ cs_cover? cs_cover: '/img/default.png' }} alt="">
+    </div>
+    <dl class="info">
+        <dt>{{ cs_name }}</dt>
+        <dd>讲师：{{ tc_name }}</dd>
+        {{ if lessons }}
+        <dd>课时：{{ lessons.length }}</dd>
+        {{ /if }}
+    </dl>
+</div>
